@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package tourism;
+
+option go_package = "genproto/tourism";
+
+service TourismService {
+  rpc AddHistorical(Historical) returns (HistoricalResponse);
+  rpc UpdateHistorical(UpdateAHistorical) returns (HistoricalResponse);
+  rpc GetHistoricalByID(HistoricalId) returns (HistoricalResponse);
+  rpc ListHistorical(HistoricalList) returns (HistoricalListResponse);
+  rpc DeleteHistorical(HistoricalId) returns (Message);
+  rpc SearchHistorical(HistoricalSearch) returns (HistoricalListResponse);
+  rpc GetHistoricalByCountry(HistoricalCountry) returns (HistoricalListResponse);
+
+
+}
+
+message HistoricalCountry {
+  string city = 1;
+}
+
+message HistoricalSearch{
+  string search = 1;
+}
+
+message Message {
+  string massage = 1;
+}
+
+message HistoricalListResponse {
+  repeated HistoricalResponse historical = 1;
+}
+
+message HistoricalList {
+  int64 limit = 1;
+  int64 offset = 2;
+  string country = 3;
+  string city = 4;
+}
+
+message HistoricalId {
+  string id = 1;
+}
+
+message UpdateAHistorical {
+  string id = 9;
+  string country = 1;
+  string city = 2;
+  string name = 3;
+  string description = 4;
+  string image_url = 5;
+  int32 activity = 6;
+  string  full_info_url = 7;
+  string created_at = 8;
+}
+
+message Historical {
+  string country = 1;
+  string city = 2;
+  string name = 3;
+  string description = 4;
+  string image_url = 5;
+  int32 activity = 6;
+  string  full_info_url = 7;
+  string created_at = 8;
+}
+
+message HistoricalResponse {
+  string id = 9;
+  string country = 1;
+  string city = 2;
+  string name = 3;
+  string description = 4;
+  string image_url = 5;
+  int32 activity = 6;
+  string  full_info_url = 7;
+  string created_at = 8;
+}
+
+
+
