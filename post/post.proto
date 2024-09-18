@@ -1,0 +1,153 @@
+syntax = "proto3";
+
+package post;
+
+option go_package = "genproto/post";
+
+service PostService {
+  //post
+  rpc CreatePost(Post) returns (PostResponse);
+  rpc UpdatePost(UpdateAPost) returns (PostResponse);
+  rpc GetPostByID(PostId) returns (PostResponse);
+  rpc ListPosts(PostList) returns (PostListResponse);
+  rpc DeletePost(PostId) returns (Message);
+  rpc RemoveImageFromPost(Post) returns (PostListResponse);
+  rpc GetPostByCountry(PostCountry) returns (PostListResponse);
+
+  //basic-additional
+
+  //like
+  rpc AddLikePost(LikePost) returns (LikePost);
+  rpc DeleteLikePost(LikeId) returns (Message);
+  rpc AddLikeComment(LikeId) returns (PostListResponse);
+  rpc DeleteLikeComment(LikeId) returns (Message);
+  rpc GetPostLikeCount(LikeList) returns (Message);
+  rpc GetCommentLikeCount(Like) returns (PostListResponse);
+  rpc GetUsersWhichLikePost(PostId) returns (PostListResponse);
+  rpc GetUsersWhichLikeComment(CommentId) returns (PostListResponse);
+
+  //comments
+  rpc CreateComment(CommentPost) returns (CommentResponse);
+  rpc UpdateComment(UpdateAComment) returns (CommentResponse);
+  rpc GetCommentByID(CommentId) returns (CommentResponse);
+  rpc GetCommentByUsername(UserId) returns (CommentResponse);
+  rpc ListComments(CommentList) returns (Message);
+  rpc DeleteComment(CommentId) returns (Message);
+  rpc GetCommentByPostID(PostId) returns (CommentResponse);
+  rpc GetAllUserComments(CommentId) returns (CommentAllResponse);
+  rpc GetMostlikeCommentPost(PostId) returns (CommentResponse);
+}
+
+message CommentAllResponse {
+  repeated CommentResponse comment = 1;
+}
+
+message CommentList {
+  int64 limit = 1;
+  int64 offset = 2;
+}
+
+message UserId {
+  string user_id = 1;
+}
+
+message CommentResponse {
+  string id = 1;
+  string username = 2;
+  string post_id = 3;
+  string content = 4;
+  string created_at = 5;
+}
+
+message CommentPost {
+  string username = 1;
+  string post_id = 2;
+  string content = 3;
+  string created_at = 4;
+}
+
+message UpdateAComment {
+  string id = 1;
+  string username = 2;
+  string post_id = 3;
+  string content = 4;
+  string created_at = 5;
+}
+
+message LikePost {
+  string user_id = 1;
+  string post_id = 2;
+  string created_at = 3;
+}
+
+message LikeId {
+  string Id = 1;
+}
+
+message CommentId {
+  string comment_id = 1;
+}
+
+message PostListResponse {
+  repeated PostResponse post = 1;
+}
+
+message Message {
+  string massage = 1;
+}
+
+message PostCountry {
+  string nationality = 1;
+}
+
+//
+message LikeList {
+  int64 limit = 1;
+  int64 offset = 2;
+}
+
+message PostList {
+  int64 limit = 1;
+  int64 offset = 2;
+  string country = 3;
+  string hashtag = 4;
+}
+
+message PostId {
+  string id = 1;
+}
+
+message UpdateAPost {
+  string id = 1;
+  string username = 2;
+  string nationality = 3;
+  string location = 4;
+  string title = 5;
+  string hashtag = 6;
+  string content = 7;
+  string image_url = 8;
+  string created_at = 9;
+}
+
+message Post {
+  string username = 1;
+  string nationality = 2;
+  string location = 3;
+  string title = 4;
+  string hashtag = 5;
+  string content = 6;
+  string image_url = 7;
+  string created_at = 8;
+}
+
+message PostResponse {
+  string id = 1;
+  string username = 2;
+  string nationality = 3;
+  string location = 4;
+  string title = 5;
+  string hashtag = 6;
+  string content = 7;
+  string image_url = 8;
+  string created_at = 9;
+}
