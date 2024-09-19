@@ -82,7 +82,7 @@ message CommentList {
 
 message CommentResponse {
   string id = 1;
-  string username = 2;
+  string user_id = 2;
   string post_id = 3;
   string content = 4;
   string created_at = 5;
@@ -90,7 +90,7 @@ message CommentResponse {
 }
 
 message CommentPost {
-  string username = 1;
+  string user_id = 1;
   string post_id = 2;
   string content = 3;
   string created_at = 4;
@@ -98,7 +98,7 @@ message CommentPost {
 
 message UpdateAComment {
   string id = 1;
-  string username = 2;
+  string user_id = 2;
   string content = 4;
 }
 
