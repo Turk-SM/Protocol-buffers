@@ -11,35 +11,49 @@ service PostService {
   rpc GetPostByID(PostId) returns (PostResponse);
   rpc ListPosts(PostList) returns (PostListResponse);
   rpc DeletePost(PostId) returns (Message);
-  rpc RemoveImageFromPost(Post) returns (PostListResponse);
+  rpc AddImageToPost(ImageUrl) returns (PostResponse);
+  rpc RemoveImageFromPost(ImageUrl) returns (PostListResponse);
   rpc GetPostByCountry(PostCountry) returns (PostListResponse);
 
   //basic-additional
 
   //like
-  rpc AddLikePost(LikePost) returns (LikePost);
-  rpc DeleteLikePost(LikeId) returns (Message);
-  rpc AddLikeComment(LikeId) returns (PostListResponse);
-  rpc DeleteLikeComment(UserId) returns (Message);
+  rpc AddLikePost(LikePost) returns (LikeResponse);
+  rpc DeleteLikePost(LikePost) returns (Message);
+  rpc AddLikeComment(LikePost) returns (LikeResponse);
+  rpc DeleteLikeComment(LikePost) returns (Message);
   rpc GetPostLikeCount(PostId) returns (Message);
-  rpc GetCommentLikeCount(Like) returns (PostListResponse);
-  rpc GetUsersWhichLikePost(PostId) returns (PostListResponse);
-  rpc GetUsersWhichLikeComment(CommentId) returns (PostListResponse);
+  rpc GetMostLikedComment(PostId) returns (CommentResponse);
+  rpc GetUsersWhichLikePost(PostId) returns (Users);
+  rpc GetUsersWhichLikeComment(CommentId) returns (Users);
 
   //comments
   rpc CreateComment(CommentPost) returns (CommentResponse);
   rpc UpdateComment(UpdateAComment) returns (CommentResponse);
   rpc GetCommentByID(CommentId) returns (CommentResponse);
-  rpc GetCommentByUsername(UserPostId) returns (CommentResponse);
-  rpc ListComments(CommentList) returns (Message);
+  rpc GetCommentByUsername(Username) returns (CommentResponse);
+  rpc ListComments(CommentList) returns (CommentsR);
   rpc DeleteComment(CommentId) returns (Message);
-  rpc GetCommentByPostID(PostId) returns (CommentResponse);
-  rpc GetAllUserComments(CommentId) returns (CommentAllResponse);
+  rpc GetCommentByPostID(PostId) returns (CommentsR);
+  rpc GetAllUserComments(Username) returns (CommentsR);
   rpc GetMostlikeCommentPost(PostId) returns (CommentResponse);
 }
 
-message Like {
-  string comment_id = 1;
+message CommentsR {
+  repeated CommentResponse comments = 1;
+}
+
+message Username {
+  string username = 1;
+}
+
+message Users {
+  repeated string users = 1;
+}
+
+message ImageUrl {
+  string post_id = 1;
+  string url = 2;
 }
 
 message UserPostId {
@@ -52,13 +66,11 @@ message CommentAllResponse {
 }
 
 message CommentList {
+  string post_id = 3;
   int64 limit = 1;
   int64 offset = 2;
 }
 
-message UserId {
-  string user_id = 1;
-}
 
 message CommentResponse {
   string id = 1;
@@ -66,6 +78,7 @@ message CommentResponse {
   string post_id = 3;
   string content = 4;
   string created_at = 5;
+  string updated_at = 6;
 }
 
 message CommentPost {
@@ -78,19 +91,18 @@ message CommentPost {
 message UpdateAComment {
   string id = 1;
   string username = 2;
-  string post_id = 3;
   string content = 4;
-  string created_at = 5;
 }
 
 message LikePost {
   string user_id = 1;
   string post_id = 2;
-  string created_at = 3;
 }
 
-message LikeId {
-  string Id = 1;
+message LikeResponse {
+  string user_id = 1;
+  string post_id = 2;
+  string created_at = 3;
 }
 
 message CommentId {
@@ -128,14 +140,12 @@ message PostId {
 
 message UpdateAPost {
   string id = 1;
-  string username = 2;
   string nationality = 3;
   string location = 4;
   string title = 5;
   string hashtag = 6;
   string content = 7;
   string image_url = 8;
-  string created_at = 9;
 }
 
 message Post {
@@ -145,8 +155,6 @@ message Post {
   string title = 4;
   string hashtag = 5;
   string content = 6;
-  string image_url = 7;
-  string created_at = 8;
 }
 
 message PostResponse {
@@ -159,4 +167,5 @@ message PostResponse {
   string content = 7;
   string image_url = 8;
   string created_at = 9;
+  string updated_at = 10;
 }
