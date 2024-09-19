@@ -12,7 +12,7 @@ service PostService {
   rpc ListPosts(PostList) returns (PostListResponse);
   rpc DeletePost(PostId) returns (Message);
   rpc AddImageToPost(ImageUrl) returns (PostResponse);
-  rpc RemoveImageFromPost(ImageUrl) returns (PostListResponse);
+  rpc RemoveImageFromPost(ImageUrl) returns (Message);
   rpc GetPostByCountry(PostCountry) returns (PostListResponse);
 
   //basic-additional
@@ -28,9 +28,9 @@ service PostService {
   //like
   rpc AddLikePost(LikePost) returns (LikeResponse);
   rpc DeleteLikePost(LikePost) returns (Message);
-  rpc AddLikeComment(LikePost) returns (LikeResponse);
-  rpc DeleteLikeComment(LikePost) returns (Message);
-  rpc GetPostLikeCount(PostId) returns (Message);
+  rpc AddLikeComment(LikeCommit) returns (LikeComResponse);
+  rpc DeleteLikeComment(LikeCommit) returns (Message);
+  rpc GetPostLikeCount(PostId) returns (PostResponse);
   rpc GetMostLikedComment(PostId) returns (CommentResponse);
   rpc GetUsersWhichLikePost(PostId) returns (Users);
   rpc GetUsersWhichLikeComment(CommentId) returns (Users);
@@ -107,9 +107,20 @@ message LikePost {
   string post_id = 2;
 }
 
+message LikeCommit {
+  string user_id = 1;
+  string commit_id = 2;
+}
+
 message LikeResponse {
   string user_id = 1;
   string post_id = 2;
+  string created_at = 3;
+}
+
+message LikeComResponse {
+  string user_id = 1;
+  string commit_id = 2;
   string created_at = 3;
 }
 
@@ -157,7 +168,7 @@ message UpdateAPost {
 }
 
 message Post {
-  string username = 1;
+  string user_id = 1;
   string nationality = 2;
   string location = 3;
   string title = 4;
@@ -167,7 +178,7 @@ message Post {
 
 message PostResponse {
   string id = 1;
-  string username = 2;
+  string user_id = 2;
   string nationality = 3;
   string location = 4;
   string title = 5;
