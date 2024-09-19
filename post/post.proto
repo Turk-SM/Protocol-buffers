@@ -20,8 +20,8 @@ service PostService {
   rpc AddLikePost(LikePost) returns (LikePost);
   rpc DeleteLikePost(LikeId) returns (Message);
   rpc AddLikeComment(LikeId) returns (PostListResponse);
-  rpc DeleteLikeComment(LikeId) returns (Message);
-  rpc GetPostLikeCount(LikeList) returns (Message);
+  rpc DeleteLikeComment(UserId) returns (Message);
+  rpc GetPostLikeCount(PostId) returns (Message);
   rpc GetCommentLikeCount(Like) returns (PostListResponse);
   rpc GetUsersWhichLikePost(PostId) returns (PostListResponse);
   rpc GetUsersWhichLikeComment(CommentId) returns (PostListResponse);
@@ -30,12 +30,21 @@ service PostService {
   rpc CreateComment(CommentPost) returns (CommentResponse);
   rpc UpdateComment(UpdateAComment) returns (CommentResponse);
   rpc GetCommentByID(CommentId) returns (CommentResponse);
-  rpc GetCommentByUsername(UserId) returns (CommentResponse);
+  rpc GetCommentByUsername(UserPostId) returns (CommentResponse);
   rpc ListComments(CommentList) returns (Message);
   rpc DeleteComment(CommentId) returns (Message);
   rpc GetCommentByPostID(PostId) returns (CommentResponse);
   rpc GetAllUserComments(CommentId) returns (CommentAllResponse);
   rpc GetMostlikeCommentPost(PostId) returns (CommentResponse);
+}
+
+message Like {
+  string comment_id = 1;
+}
+
+message UserPostId {
+  string user_id = 1;
+  string post_id = 2;
 }
 
 message CommentAllResponse {
