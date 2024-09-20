@@ -30,8 +30,8 @@ service PostService {
   rpc DeleteLikePost(LikePost) returns (Message);
   rpc AddLikeComment(LikeCommit) returns (LikeComResponse);
   rpc DeleteLikeComment(LikeCommit) returns (Message);
-  rpc GetPostLikeCount(PostId) returns (PostResponse);
-  rpc GetMostLikedComment(PostId) returns (CommentResponse);
+  rpc GetPostLikeCount(PostId) returns (LikeCount);
+  rpc GetMostLikedComment(PostId) returns (LikeCount);
   rpc GetUsersWhichLikePost(PostId) returns (Users);
   rpc GetUsersWhichLikeComment(CommentId) returns (Users);
 
@@ -174,6 +174,11 @@ message Post {
   string title = 4;
   string hashtag = 5;
   string content = 6;
+}
+
+message LikeCount {
+  string id = 1;
+  string count = 2;
 }
 
 message PostResponse {
