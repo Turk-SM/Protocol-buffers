@@ -45,6 +45,70 @@ service PostService {
   rpc GetCommentByPostID(PostId) returns (CommentsR);
   rpc GetAllUserComments(Username) returns (CommentsR);
   rpc GetMostlikeCommentPost(PostId) returns (CommentResponse);
+
+  //chat
+  rpc StartMessaging(CreateChat) returns (ChatResponse);
+  rpc SendMessage(CreateMassage) returns (MassageResponse);
+  rpc GetChatMessages(List) returns (MassageResponseList);
+  rpc MessageMarcTrue(MassageTrue) returns (Message);
+  rpc GetUserChats(ChatId) returns (MassageResponseList);
+  rpc GetUnreadMessages(ChatId) returns (MassageResponseList);
+  rpc UpdateMessage(MassageId) returns (MassageResponse);
+  rpc GetTodayMessages(ChatId) returns (MassageResponseList);
+  rpc DeleteMessage(MassageId) returns (Message);
+  rpc DeleteChat(ChatId) returns (Message);
+}
+
+message ChatResponse {
+  string id = 1;
+  string user1_id = 2;
+  string user2_id = 3;
+}
+
+message MassageResponseList {
+  repeated MassageResponse comment = 1;
+}
+
+
+message MassageResponse {
+  string id = 1;
+  string chat_id = 2;
+  string sender_id = 3;
+  string content_type = 4;
+  string content = 5;
+  bool is_read = 6;
+}
+
+message List {
+  string chat_id = 3;
+  int64 limit = 1;
+  int64 offset = 2;
+}
+
+message MassageId {
+  string massage_id = 1;
+}
+
+message ChatId {
+  string chat_id = 1;
+}
+
+message MassageTrue {
+  string chat_id = 1;
+}
+
+
+message CreateMassage {
+  string chat_id = 2;
+  string sender_id = 3;
+  string content_type = 4;
+  string content = 5;
+  bool is_read = 1;
+}
+
+message CreateChat {
+  string user1_id = 1;
+  string user2_id = 2;
 }
 
 message CommentsR {
