@@ -51,18 +51,24 @@ service PostService {
   rpc SendMessage(CreateMassage) returns (MassageResponse);
   rpc GetChatMessages(List) returns (MassageResponseList);
   rpc MessageMarcTrue(MassageTrue) returns (Message);
-  rpc GetUserChats(ChatId) returns (MassageResponseList);
+  rpc GetUserChats(Username) returns (ChatResponseList);
   rpc GetUnreadMessages(ChatId) returns (MassageResponseList);
-  rpc UpdateMessage(MassageId) returns (MassageResponse);
+  rpc UpdateMessage(UpdateMs) returns (MassageResponse);
   rpc GetTodayMessages(ChatId) returns (MassageResponseList);
   rpc DeleteMessage(MassageId) returns (Message);
   rpc DeleteChat(ChatId) returns (Message);
+}
+
+message UpdateMs {
+  string message_id = 1;
+  string text = 2;
 }
 
 message ChatResponse {
   string id = 1;
   string user1_id = 2;
   string user2_id = 3;
+  string crated_at = 4;
 }
 
 message ChatResponseList {
@@ -82,6 +88,8 @@ message MassageResponse {
   string content_type = 4;
   string content = 5;
   bool is_read = 6;
+  string created_at = 7;
+  string updated_at = 8;
 }
 
 message List {
@@ -108,7 +116,6 @@ message CreateMassage {
   string sender_id = 3;
   string content_type = 4;
   string content = 5;
-  bool is_read = 1;
 }
 
 message CreateChat {
