@@ -65,8 +65,13 @@ message ChatResponse {
   string user2_id = 3;
 }
 
+message ChatResponseList {
+  repeated ChatResponse chat = 1;
+}
+
+
 message MassageResponseList {
-  repeated MassageResponse comment = 1;
+  repeated MassageResponse massage = 1;
 }
 
 
