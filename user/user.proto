@@ -13,10 +13,8 @@ service UserService {
   rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
   rpc ChangeProfileImage(URL) returns (Void);
   rpc FetchUsers(Filter) returns (UserResponses);
-  rpc ListOfFollowing(Id) returns (Followings);
-  rpc ListOfFollowers(Id) returns (Followers);
-  rpc ListOfFollowingByUsername(Id) returns (Followings);
-  rpc ListOfFollowersByUsername(Id) returns (Followers);
+  rpc ListOfFollowing(Id) returns (Follows);
+  rpc ListOfFollowers(Id) returns (Follows);
   rpc DeleteUser(Id) returns (Void);
 
   //subscribe
@@ -155,11 +153,11 @@ message Ids {
   string following_id = 2;
 }
 
-message Followings {
-  repeated string following =1;
+message FollowUser {
+  string username = 1;
+  string id = 2;
 }
 
-
-message Followers {
-  repeated string followers = 1;
+message Follows {
+  repeated FollowUser following =1;
 }
