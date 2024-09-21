@@ -16,12 +16,12 @@ service PostService {
   rpc GetPostByCountry(PostCountry) returns (PostListResponse);
 
   //basic-additional
-//  rpc GetUserRecommendation() returns ();
-//  rpc GetPostsByUsername() returns ();
-//  rpc GetPostsSubscribers() returns ();
-//  rpc GetTrendPosts() returns ();
-//  rpc GetTrendsPost() returns ();
-//  rpc SearchPost() returns ();
+  rpc GetUserRecommendation(Username) returns (PostListResponse);
+  rpc GetPostsByUsername(Username) returns (PostListResponse);
+  rpc GetPostsSubscribers(Username) returns (PostListResponse);
+  rpc GetTrendPosts(Void) returns (PostListResponse);
+  rpc GetTrendsPost(Void) returns (PostListResponse);
+  rpc SearchPost(Search) returns (PostListResponse);
 //  rpc Repost() returns ();
 
 
@@ -57,6 +57,12 @@ service PostService {
   rpc GetTodayMessages(ChatId) returns (MassageResponseList);
   rpc DeleteMessage(MassageId) returns (Message);
   rpc DeleteChat(ChatId) returns (Message);
+}
+
+message Void {}
+
+message Search {
+  string action = 1;
 }
 
 message UpdateMs {
