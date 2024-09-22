@@ -18,8 +18,6 @@ service PostService {
   //basic-additional
   rpc GetUserRecommendation(Username) returns (PostListResponse);
   rpc GetPostsByUsername(Username) returns (PostListResponse);
-  rpc GetPostsSubscribers(Username) returns (PostListResponse);
-  rpc GetTrendPosts(Void) returns (PostListResponse);
   rpc GetTrendsPost(Void) returns (PostListResponse);
   rpc SearchPost(Search) returns (PostListResponse);
 //  rpc Repost() returns ();
@@ -244,9 +242,10 @@ message UpdateAPost {
   string nationality = 3;
   string location = 4;
   string title = 5;
-  string hashtag = 6;
-  string content = 7;
-  string image_url = 8;
+  string description = 6;
+  string hashtag = 7;
+  string content = 8;
+  string image_url = 9;
 }
 
 message Post {
@@ -254,8 +253,9 @@ message Post {
   string nationality = 2;
   string location = 3;
   string title = 4;
-  string hashtag = 5;
-  string content = 6;
+  string description = 5;
+  string hashtag = 6;
+  string content = 7;
 }
 
 message LikeCount {
@@ -269,9 +269,10 @@ message PostResponse {
   string nationality = 3;
   string location = 4;
   string title = 5;
-  string hashtag = 6;
-  string content = 7;
-  string image_url = 8;
-  string created_at = 9;
-  string updated_at = 10;
+  string description = 6;
+  string hashtag = 7;
+  string content = 8;
+  string image_url = 9;
+  string created_at = 10;
+  string updated_at = 11;
 }
