@@ -1,0 +1,229 @@
+syntax = "proto3";
+
+package nationality;
+
+option go_package = "genproto/nationality";
+
+service NationalityService {
+  // National Foods
+  rpc CreateNationalFood(NationalFood) returns (NationalFoodResponse);
+  rpc UpdateNationalFood(UpdateNationalFood) returns (NationalFoodResponse);
+  rpc GetNationalFoodByID(NationalFoodId) returns (NationalFoodResponse);
+  rpc ListNationalFood(NationalFoodList) returns (NationalFoodListResponse);
+  rpc DeleteNationalFood(NationalFoodId) returns (Message);
+  rpc AddNationalFoodImage(NationalFoodImage) returns (Message);
+  rpc RemoveNationalFoodImage(NationalFoodImage) returns (Message);
+  rpc GetNationalFoodByCountry(NationalFoodCountry) returns (NationalFoodListResponse);
+  rpc SearchNationalFood(NationalFoodSearch) returns (NationalFoodListResponse);
+  rpc GetRatingNationalFood(NationalFoodId) returns (RatingResponse);
+
+  // Historical (from previous)
+  rpc AddHistorical(Historical) returns (HistoricalResponse);
+  rpc UpdateHistorical(UpdateAHistorical) returns (HistoricalResponse);
+  rpc GetHistoricalByID(HistoricalId) returns (HistoricalResponse);
+  rpc ListHistorical(HistoricalList) returns (HistoricalListResponse);
+  rpc DeleteHistorical(HistoricalId) returns (Message);
+  rpc SearchHistorical(HistoricalSearch) returns (HistoricalListResponse);
+  rpc GetHistoricalByCountry(HistoricalCountry) returns (HistoricalListResponse);
+  rpc AddHistoricalImage(HistoricalImage) returns (Message);
+  rpc RemoveHistoricalImage(HistoricalImage) returns (Message);
+
+  // Attractions
+  rpc CreateAttraction(Attraction) returns (AttractionResponse);
+  rpc UpdateAttraction(UpdateAttraction) returns (AttractionResponse);
+  rpc GetAttractionByID(AttractionId) returns (AttractionResponse);
+  rpc ListAttraction(AttractionList) returns (AttractionListResponse);
+  rpc DeleteAttraction(AttractionId) returns (Message);
+  rpc AddAttractionImage(AttractionImage) returns (Message);
+  rpc RemoveAttractionImage(AttractionImage) returns (Message);
+  rpc GetAttractionByCountry(AttractionCountry) returns (AttractionListResponse);
+  rpc SearchAttraction(AttractionSearch) returns (AttractionListResponse);
+}
+
+message HistoricalImage{
+  string id = 1;
+  string url = 2;
+}
+
+message HistoricalCountry {
+  string city = 1;
+}
+
+message HistoricalSearch{
+  string search = 1;
+}
+
+message Message {
+  string massage = 1;
+}
+
+message HistoricalListResponse {
+  repeated HistoricalResponse historical = 1;
+}
+
+message HistoricalList {
+  int64 limit = 1;
+  int64 offset = 2;
+  string country = 3;
+  string city = 4;
+}
+
+message HistoricalId {
+  string id = 1;
+}
+
+message UpdateAHistorical {
+  string id = 9;
+  string country = 1;
+  string city = 2;
+  string name = 3;
+  string description = 4;
+  string image_url = 5;
+  int32 activity = 6;
+  string  full_info_url = 7;
+  string created_at = 8;
+}
+
+message Historical {
+  string country = 1;
+  string city = 2;
+  string name = 3;
+  string description = 4;
+  string image_url = 5;
+  int32 activity = 6;
+  string  full_info_url = 7;
+  string created_at = 8;
+}
+
+message HistoricalResponse {
+  string id = 9;
+  string country = 1;
+  string city = 2;
+  string name = 3;
+  string description = 4;
+  string image_url = 5;
+  int32 activity = 6;
+  string  full_info_url = 7;
+  string created_at = 8;
+}
+message NationalFood {
+  string country = 1;
+  string name = 2;
+  string description = 3;
+  string image_url = 4;
+  int32 rating = 5;
+  string created_at = 6;
+}
+
+message NationalFoodResponse {
+  string id = 1;
+  string country = 2;
+  string name = 3;
+  string description = 4;
+  string image_url = 5;
+  int32 rating = 6;
+  string created_at = 7;
+}
+
+message NationalFoodId {
+  string id = 1;
+}
+
+message UpdateNationalFood {
+  string id = 1;
+  string country = 2;
+  string name = 3;
+  string description = 4;
+  string image_url = 5;
+  int32 rating = 6;
+  string created_at = 7;
+}
+
+message NationalFoodList {
+  int64 limit = 1;
+  int64 offset = 2;
+  string country = 3;
+}
+
+message NationalFoodListResponse {
+  repeated NationalFoodResponse national_food = 1;
+}
+
+message NationalFoodImage {
+  string id = 1;
+  string image_url = 2;
+}
+
+message NationalFoodCountry {
+  string country = 1;
+}
+
+message NationalFoodSearch {
+  string search = 1;
+}
+
+message RatingResponse {
+  int32 rating = 1;
+}
+
+message Attraction {
+  string country = 1;
+  string name = 2;
+  string description = 3;
+  string category = 4; // corresponds to the ENUM 'attraction_type'
+  string location = 5;
+  string image_url = 6;
+  string created_at = 7;
+}
+
+message AttractionResponse {
+  string id = 1;
+  string country = 2;
+  string name = 3;
+  string description = 4;
+  string category = 5;
+  string location = 6;
+  string image_url = 7;
+  string created_at = 8;
+}
+
+message AttractionId {
+  string id = 1;
+}
+
+message UpdateAttraction {
+  string id = 1;
+  string country = 2;
+  string name = 3;
+  string description = 4;
+  string category = 5;
+  string location = 6;
+  string image_url = 7;
+  string created_at = 8;
+}
+
+message AttractionList {
+  int64 limit = 1;
+  int64 offset = 2;
+  string country = 3;
+}
+
+message AttractionListResponse {
+  repeated AttractionResponse attractions = 1;
+}
+
+message AttractionImage {
+  string id = 1;
+  string image_url = 2;
+}
+
+message AttractionCountry {
+  string country = 1;
+}
+
+message AttractionSearch {
+  string search = 1;
+}
+
+
+
