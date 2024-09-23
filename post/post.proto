@@ -217,7 +217,7 @@ message Message {
 }
 
 message PostCountry {
-  string nationality = 1;
+  string country = 1;
 }
 
 //
@@ -239,7 +239,7 @@ message PostId {
 
 message UpdateAPost {
   string id = 1;
-  string nationality = 3;
+  string country = 3;
   string location = 4;
   string title = 5;
   string description = 6;
@@ -250,7 +250,7 @@ message UpdateAPost {
 
 message Post {
   string user_id = 1;
-  string nationality = 2;
+  string country = 2;
   string location = 3;
   string title = 4;
   string description = 5;
@@ -266,7 +266,7 @@ message LikeCount {
 message PostResponse {
   string id = 1;
   string user_id = 2;
-  string nationality = 3;
+  string country = 3;
   string location = 4;
   string title = 5;
   string description = 6;
