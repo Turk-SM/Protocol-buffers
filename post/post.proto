@@ -256,6 +256,7 @@ message Post {
   string description = 5;
   string hashtag = 6;
   string content = 7;
+  string image_url = 8;
 }
 
 message LikeCount {
