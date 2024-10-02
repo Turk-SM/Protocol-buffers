@@ -66,6 +66,7 @@ message CreateRequest {
   string username = 6;
   string nationality =7;
   string bio = 8;
+  string role = 9;
 }
 
 message UserResponse {
