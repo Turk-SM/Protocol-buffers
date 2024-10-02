@@ -26,7 +26,7 @@ service UserService {
 
   //auth
   rpc Register(RegisterRequest) returns (RegisterResponse);
-  rpc LoginEmail(LoginEmailRequest) returns (LoginResponse);
+  rpc LoginEmail(LoginEmailRequest) returns (LoginResponse1);
   rpc LoginUsername(LoginUsernameRequest) returns (LoginResponse);
   rpc AcceptCodeToRegister(AcceptCode) returns (RegisterResponse);
   rpc ForgotPassword(ForgotPasswordRequest) returns (Message);
@@ -34,6 +34,15 @@ service UserService {
   rpc ResetPassword(ResetPassReq) returns (Message);
   rpc GetUserByEmail(Email) returns (GetProfileResponse);
   rpc UpdatePassword(UpdatePasswordReq) returns (Message);
+}
+
+message LoginResponse1 {
+  string id = 1;
+  string email = 2;
+  string user_name = 3;
+  string password = 4;
+  string role = 5;
+  string country = 6;
 }
 
 message Email {
