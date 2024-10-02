@@ -7,7 +7,7 @@ option go_package = "genproto/nationality";
 service NationalityService {
   // National Foods
   rpc CreateNationalFood(NationalFood) returns (NationalFoodResponse);
-  rpc UpdateNationalFood(UpdateNationalFood) returns (NationalFoodResponse);
+  rpc UpdateNationalFoods(UpdateNationalFood) returns (NationalFoodResponse);
   rpc GetNationalFoodByID(NationalFoodId) returns (NationalFoodResponse);
   rpc ListNationalFood(NationalFoodList) returns (NationalFoodListResponse);
   rpc DeleteNationalFood(NationalFoodId) returns (Message);
@@ -17,9 +17,9 @@ service NationalityService {
   rpc SearchNationalFood(NationalFoodSearch) returns (NationalFoodListResponse);
   rpc GetRatingNationalFood(NationalFoodId) returns (RatingResponse);
 
-  // Historical (from previous)
+  // Historical
   rpc AddHistorical(Historical) returns (HistoricalResponse);
-  rpc UpdateHistorical(UpdateAHistorical) returns (HistoricalResponse);
+  rpc UpdateHistoricals(UpdateHistorical) returns (HistoricalResponse);
   rpc GetHistoricalByID(HistoricalId) returns (HistoricalResponse);
   rpc ListHistorical(HistoricalList) returns (HistoricalListResponse);
   rpc DeleteHistorical(HistoricalId) returns (Message);
@@ -30,17 +30,16 @@ service NationalityService {
 
   // Attractions
   rpc CreateAttraction(Attraction) returns (AttractionResponse);
-  rpc UpdateAttraction(UpdateAttraction) returns (AttractionResponse);
+  rpc UpdateAttractions(UpdateAttraction) returns (AttractionResponse);
   rpc GetAttractionByID(AttractionId) returns (AttractionResponse);
   rpc ListAttraction(AttractionList) returns (AttractionListResponse);
   rpc DeleteAttraction(AttractionId) returns (Message);
   rpc AddAttractionImage(AttractionImage) returns (Message);
   rpc RemoveAttractionImage(AttractionImage) returns (Message);
-  rpc GetAttractionByCountry(AttractionCountry) returns (AttractionListResponse);
   rpc SearchAttraction(AttractionSearch) returns (AttractionListResponse);
 }
 
-message HistoricalImage{
+message HistoricalImage {
   string id = 1;
   string url = 2;
 }
@@ -49,12 +48,12 @@ message HistoricalCountry {
   string city = 1;
 }
 
-message HistoricalSearch{
+message HistoricalSearch {
   string search = 1;
 }
 
 message Message {
-  string massage = 1;
+  string message = 1; // Corrected typo
 }
 
 message HistoricalListResponse {
@@ -71,17 +70,15 @@ message HistoricalList {
 message HistoricalId {
   string id = 1;
 }
-
-message UpdateAHistorical {
-  string id = 9;
-  string country = 1;
-  string city = 2;
-  string name = 3;
-  string description = 4;
-  string image_url = 5;
-  int32 activity = 6;
-  string  full_info_url = 7;
-  string created_at = 8;
+message UpdateHistorical {
+  string id = 1;
+  string country = 2;
+  string city = 3;
+  string name = 4;
+  string description = 5;
+  string image_url = 6;
+  string created_at = 7;
+  string updated_at = 8;
 }
 
 message Historical {
@@ -90,31 +87,32 @@ message Historical {
   string name = 3;
   string description = 4;
   string image_url = 5;
-  int32 activity = 6;
-  string  full_info_url = 7;
-  string created_at = 8;
+  string created_at = 6;
+  string updated_at = 7;
 }
 
 message HistoricalResponse {
-  string id = 9;
-  string country = 1;
-  string city = 2;
-  string name = 3;
-  string description = 4;
-  string image_url = 5;
-  int32 activity = 6;
-  string  full_info_url = 7;
-  string created_at = 8;
+  string id = 1;
+  string country = 2;
+  string city = 3;
+  string name = 4;
+  string description = 5;
+  string image_url = 6;
+  string created_at = 7;
+  string updated_at = 8;
 }
 message NationalFood {
   string country = 1;
   string name = 2;
   string description = 3;
-  string image_url = 4;
-  int32 rating = 5;
-  string created_at = 6;
+  string nationality = 4;
+  string image_url = 5;
+  int32 rating = 6;
+  string food_type = 7;
+  string ingredients = 8;
+  string created_at = 9;
+  string updated_at = 10;
 }
-
 message NationalFoodResponse {
   string id = 1;
   string country = 2;
@@ -122,21 +120,15 @@ message NationalFoodResponse {
   string description = 4;
   string image_url = 5;
   int32 rating = 6;
-  string created_at = 7;
+  string ingredients = 7;
+  string food_type = 10;
+  string nationality = 11;
+  string created_at = 8;
+  string updated_at = 9;
 }
 
 message NationalFoodId {
   string id = 1;
-}
-
-message UpdateNationalFood {
-  string id = 1;
-  string country = 2;
-  string name = 3;
-  string description = 4;
-  string image_url = 5;
-  int32 rating = 6;
-  string created_at = 7;
 }
 
 message NationalFoodList {
@@ -174,21 +166,51 @@ message Attraction {
   string location = 5;
   string image_url = 6;
   string created_at = 7;
+  string updated_at = 8;
+}
+
+message AttractionList {
+  string country = 1;
+  string category = 2;
+  string name = 3;
+  string description = 4;
+  int64 limit = 5;
+  int64 offset = 6;
 }
 
 message AttractionResponse {
   string id = 1;
-  string country = 2;
+  string category = 2;
   string name = 3;
   string description = 4;
-  string category = 5;
+  string country = 5;
   string location = 6;
   string image_url = 7;
   string created_at = 8;
+  string updated_at = 9;
 }
+
+message AttractionListResponse {
+  repeated AttractionResponse attractions = 1;
+}
+
 
 message AttractionId {
   string id = 1;
+}
+
+message UpdateNationalFood {
+  string id = 1;
+  string country = 2;
+  string name = 3;
+  string description = 4;
+  string image_url = 5;
+  int32 rating = 6;
+  string nationality = 7;
+  string food_type = 10;
+  string ingredients = 11;
+  string created_at = 8;
+  string updated_at = 9;
 }
 
 message UpdateAttraction {
@@ -200,17 +222,11 @@ message UpdateAttraction {
   string location = 6;
   string image_url = 7;
   string created_at = 8;
+  string updated_at = 9;
 }
 
-message AttractionList {
-  int64 limit = 1;
-  int64 offset = 2;
-  string country = 3;
-}
 
-message AttractionListResponse {
-  repeated AttractionResponse attractions = 1;
-}
+
 
 message AttractionImage {
   string id = 1;
@@ -222,8 +238,18 @@ message AttractionCountry {
 }
 
 message AttractionSearch {
-  string search = 1;
+  string search_term = 1;
+  string limit = 2;
+  string offset = 3;
 }
 
-
-
+// Enum for attraction types
+enum AttractionType {
+  NATURE = 0;
+  PARK = 1;
+  BEACH = 2;
+  NATIONAL_PARKS = 3;
+  CULTURE = 4;
+  MUSEUM = 5;
+  LAKE = 6;
+}
