@@ -37,6 +37,12 @@ service NationalityService {
   rpc AddAttractionImage(AttractionImage) returns (Message);
   rpc RemoveAttractionImage(AttractionImage) returns (Message);
   rpc SearchAttraction(AttractionSearch) returns (AttractionListResponse);
+
+  rpc CreateAttractionType(CreateAttractionTypeRequest) returns (CreateAttractionTypeResponse) {}
+  rpc GetAttractionType(GetAttractionTypeRequest) returns (GetAttractionTypeResponse) {}
+  rpc UpdateAttractionType(UpdateAttractionTypeRequest) returns (UpdateAttractionTypeResponse) {}
+  rpc DeleteAttractionType(DeleteAttractionTypeRequest) returns (Message) {}
+  rpc ListAttractionTypes(ListAttractionTypesRequest) returns (ListAttractionTypesResponse) {}
 }
 
 message HistoricalImage {
@@ -252,4 +258,53 @@ enum AttractionType {
   CULTURE = 4;
   MUSEUM = 5;
   LAKE = 6;
+}
+
+message CreateAttractionTypeRequest {
+  string name = 1;
+  int32 activity = 2;
+}
+
+message CreateAttractionTypeResponse {
+  AttractionType1 attraction_type = 1;
+}
+
+message GetAttractionTypeRequest {
+  string id = 1;
+}
+
+message GetAttractionTypeResponse {
+  AttractionType1 attraction_type = 1;
+}
+
+message UpdateAttractionTypeRequest {
+  string id = 1;
+  string name = 2;
+  int32 activity = 3;
+}
+
+message UpdateAttractionTypeResponse {
+  AttractionType1 attraction_type = 1;
+}
+
+message DeleteAttractionTypeRequest {
+  string id = 1;
+}
+
+
+
+message ListAttractionTypesRequest {
+  int64 limit = 1;
+  int64 offset = 2;
+  string name = 3;
+}
+
+message ListAttractionTypesResponse {
+  repeated AttractionType1 attraction_types = 1;
+}
+
+message AttractionType1 {
+  string id = 1;
+  string name = 2;
+  int32 activity = 3;
 }
