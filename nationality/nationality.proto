@@ -43,6 +43,12 @@ service NationalityService {
   rpc UpdateAttractionType(UpdateAttractionTypeRequest) returns (UpdateAttractionTypeResponse) {}
   rpc DeleteAttractionType(DeleteAttractionTypeRequest) returns (Message) {}
   rpc ListAttractionTypes(ListAttractionTypesRequest) returns (ListAttractionTypesResponse) {}
+
+  rpc CreateCountry(CreateCountryRequest) returns (CreateCountryResponse) {}
+  rpc GetCountry(GetCountryRequest) returns (GetCountryResponse) {}
+  rpc UpdateCountry(UpdateCountryRequest) returns (UpdateCountryResponse) {}
+  rpc DeleteCountry(DeleteCountryRequest) returns (Message) {}
+  rpc ListCountries(ListCountriesRequest) returns (ListCountriesResponse) {}
 }
 
 message HistoricalImage {
@@ -307,4 +313,69 @@ message AttractionType1 {
   string id = 1;
   string name = 2;
   int32 activity = 3;
+}
+
+message CreateCountryRequest {
+  string country = 1;
+  string city = 2;
+  string nationality = 3;
+  string image_url = 4;
+}
+
+message CreateCountryResponse {
+  string id = 1;
+  string country = 2;
+  string city = 3;
+  string nationality = 4;
+  string image_url = 5;
+}
+
+message GetCountryRequest {
+  string id = 1;
+}
+
+message GetCountryResponse {
+  string id = 1;
+  string country = 2;
+  string city = 3;
+  string nationality = 4;
+  string image_url = 5;
+}
+
+message UpdateCountryRequest {
+  string id = 1;
+  string country = 2;
+  string city = 3;
+  string nationality = 4;
+  string image_url = 5;
+}
+
+message UpdateCountryResponse {
+  string id = 1;
+  string country = 2;
+  string city = 3;
+  string nationality = 4;
+  string image_url = 5;
+}
+
+message DeleteCountryRequest {
+  string id = 1;
+}
+
+message ListCountriesRequest {
+  int64 limit = 1;
+  int64 offset = 2;
+  string country = 3;
+  string city = 4;
+}
+
+message ListCountriesResponse {
+  repeated Country countries = 1;
+}
+message Country {
+  string id = 1;
+  string country = 2;
+  string city = 3;
+  string nationality = 4;
+  string image_url = 5;
 }
