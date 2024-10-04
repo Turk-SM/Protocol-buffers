@@ -23,6 +23,13 @@ service UserService {
   rpc GetUserFollowers(Id) returns (Count);
   rpc GetUserFollows(Id) returns (Count);
   rpc MostPopularUser(Void) returns (UserResponse);
+
+  // nationality
+  rpc AddNationality(Nationality) returns (Void);
+  rpc GetNationalityById(NId) returns (Nationality);
+  rpc ListNationalities(Pagination) returns (Nationalities);
+  rpc UpdateNationality(Nationality) returns (Void);
+  rpc DeleteNationality(NId) returns (Void);
 }
 // subscribe messages
 
@@ -161,4 +168,26 @@ message FollowUser {
 
 message Follows {
   repeated FollowUser following =1;
+}
+
+message Nationality {
+  string id =1;
+  string name = 2;
+  string description = 3;
+}
+
+
+message Nationalities {
+  repeated Nationality nationalities = 1;
+}
+
+message NId {
+  string id = 1;
+}
+
+message Pagination {
+  int32 page = 1;
+  int32 limit = 2;
+  string name = 3;
+  string description = 4;
 }
