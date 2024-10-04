@@ -26,7 +26,7 @@ service UserService {
 
   //auth
   rpc Register(RegisterRequest) returns (RegisterResponse);
-  rpc LoginEmail(LoginEmailRequest) returns (LoginResponse1);
+  rpc LoginEmail(LoginEmailRequest) returns (LoginResponse);
   rpc LoginUsername(LoginUsernameRequest) returns (LoginResponse);
   rpc AcceptCodeToRegister(AcceptCode) returns (RegisterResponse);
   rpc ForgotPassword(ForgotPasswordRequest) returns (Message);
@@ -35,7 +35,7 @@ service UserService {
   rpc GetUserByEmail(Email) returns (GetProfileResponse);
   rpc UpdatePassword(UpdatePasswordReq) returns (Message);
   // nationality
-  rpc AddNationality(Nationality) returns (Void);
+  rpc AddNationality(Nat) returns (Nationality);
   rpc GetNationalityById(NId) returns (Nationality);
   rpc ListNationalities(Pagination) returns (Nationalities);
   rpc UpdateNationality(Nationality) returns (Void);
@@ -276,4 +276,9 @@ message Pagination {
   int32 limit = 2;
   string name = 3;
   string description = 4;
+}
+
+message Nat {
+  string name = 1;
+  string description = 2;
 }
