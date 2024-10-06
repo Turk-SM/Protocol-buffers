@@ -129,6 +129,7 @@ message CreateChat {
 
 message CommentsR {
   repeated CommentResponse comments = 1;
+  string total = 2;
 }
 
 message Username {
@@ -210,6 +211,7 @@ message CommentId {
 
 message PostListResponse {
   repeated PostResponse post = 1;
+  string total = 2;
 }
 
 message Message {
