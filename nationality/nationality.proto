@@ -71,7 +71,7 @@ message CountryId {
 
 message ListCityResponse {
   repeated CreateCityResponse countries = 1;
-  int32 total = 2;
+  string total = 2;
 }
 
 message ListCityRequest {
@@ -112,11 +112,12 @@ message HistoricalSearch {
 }
 
 message Message {
-  string message = 1; // Corrected typo
+  string message = 1;
 }
 
 message HistoricalListResponse {
   repeated HistoricalResponse historical = 1;
+  string total = 2;
 }
 
 message HistoricalList {
@@ -192,6 +193,7 @@ message NationalFoodList {
 
 message NationalFoodListResponse {
   repeated NationalFoodResponse national_food = 1;
+  string total = 2;
 }
 
 message NationalFoodImage {
@@ -245,6 +247,7 @@ message AttractionResponse {
 
 message AttractionListResponse {
   repeated AttractionResponse attractions = 1;
+  string total = 2;
 }
 
 
@@ -343,6 +346,7 @@ message ListAttractionTypesRequest {
 
 message ListAttractionTypesResponse {
   repeated AttractionType1 attraction_types = 1;
+  string total = 2;
 }
 
 message AttractionType1 {
@@ -396,6 +400,7 @@ message ListCountriesRequest {
 
 message ListCountriesResponse {
   repeated Country countries = 1;
+  string total = 2;
 }
 message Country {
   string id = 1;
