@@ -61,7 +61,7 @@ message RegisterRequest {
   string first_name = 3;
   string last_name = 4;
   string username = 5;
-  string country = 6;
+  string nationality = 6;
   string password = 7;
   string bio = 8;
 }
