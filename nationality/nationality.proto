@@ -56,10 +56,10 @@ service NationalityService {
   rpc GetCity(GetCityRequest) returns (CreateCityResponse) {}
   rpc UpdateCity(CreateCityResponse) returns (CreateCityResponse) {}
   rpc DeleteCity(GetCityRequest) returns (Message) {}
-  rpc ListCity(ListCityRequest) returns (GetCountry) {}
-  rpc GetBYCount(CountryId) returns (GetCountry) {}
+  rpc ListCity(ListCityRequest) returns (GetListCountry) {}
+  rpc GetBYCount(CountryId) returns (GetListCountry) {}
 }
-message GetCountry {
+message GetListCountry {
   repeated CreateResponse countries = 1;
   int32 total = 2;
 }
