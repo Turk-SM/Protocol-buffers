@@ -124,7 +124,6 @@ message HistoricalListResponse {
 message HistoricalList {
   int64 limit = 1;
   int64 offset = 2;
-  string country = 3;
   string city = 4;
 }
 
