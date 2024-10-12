@@ -133,7 +133,6 @@ message HistoricalId {
 }
 message UpdateHistorical {
   string id = 1;
-  string country = 2;
   string city = 3;
   string name = 4;
   string description = 5;
@@ -143,7 +142,6 @@ message UpdateHistorical {
 }
 
 message Historical {
-  string country = 1;
   string city = 2;
   string name = 3;
   string description = 4;
@@ -154,7 +152,6 @@ message Historical {
 
 message HistoricalResponse {
   string id = 1;
-  string country = 2;
   string city = 3;
   string name = 4;
   string description = 5;
