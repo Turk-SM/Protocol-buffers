@@ -160,7 +160,6 @@ message HistoricalResponse {
 }
 message NationalFood {
   string food_name = 1;
-  string food_type = 2;
   string country_id = 3;
   string description = 4;
   string ingredients = 5;
@@ -170,7 +169,6 @@ message NationalFood {
 message NationalFoodResponse {
   string id = 8;
   string food_name = 1;
-  string food_type = 2;
   string country_id = 3;
   string description = 4;
   string ingredients = 5;
@@ -255,7 +253,6 @@ message AttractionId {
 message UpdateNationalFood {
   string id = 1;
   string food_name = 6;
-  string food_type = 2;
   string country_id = 3;
   string description = 4;
   string ingredients = 5;
